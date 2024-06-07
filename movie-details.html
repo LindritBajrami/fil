@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detajet e filmit - FilmaDB</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+</head>
+<body>
+    
+    <header></header>
+
+    <section>
+        <div class="container">
+            <div class="movie"></div>
+        </div>
+    </section>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="./assets/js/helpers.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
+    <script src="./assets/js/dynamicListener.min.js"></script>
+    <script type="module">
+        import Movie from "./components/Movie.js";
+        import Header  from "./components/Header.js"
+        
+        document.querySelector('header').innerHTML = Header()
+
+        const query_string = getQueryStringFromURL(window.location.href)
+        const params = new URLSearchParams(query_string);
+        const movie_div = document.querySelector('.movie')
+
+        if(params.has('id')) {
+            const id = params.get('id')
+            Movie(id, movie_div)
+        } else {
+            window.location.href = 'http://127.0.0.1:5500/'
+        }
+
+
+        addDynamicEventListener(document.body, 'click', '#add-to-fav', function (e) {
+          const id = e.target.getAttribute('movie-id')
+          const api_url = `https://api.themoviedb.org/3/movie/${id}?api_key=8434b8e45fae7a011d0aba790f56cad3`
+
+          fetch(api_url)
+          .then(response => response.json())
+          .then(data => {
+            const fav_movies = getFavMovies()
+            if(fav_movies.filter(movie => movie.id == data.id).length > 0) {
+              alert('Filmi vec me eshte shtuar ne "Filmat e preferuar"!')
+            } else {
+              if(fav_movies.length > 0) {
+                localStorage.setItem('favmovies', JSON.stringify([...fav_movies, data]))
+              } else {
+                localStorage.setItem('favmovies', JSON.stringify([data]))
+              }
+              alert('Filmi u shtua ne listen e "Filmat e preferuar".')
+            }
+          })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakti - FilmaDB</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+</head>
+<body>
+
+    <header>v</header>
+
+    <section>
+        <div class="container">
+            <h2 class="mb-4">Na kontaktoni</h2>
+            <form action="#">
+                <div class="form-group mb-3">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" required class="form-control" placeholder="p.sh: john@smith.com">
+                    <small></small>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="title">Titulli</label>
+                    <input type="text" name="title" id="title" required class="form-control" placeholder="p.sh: Si mund te porosis filma?">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="message">Mesazhi</label>
+                    <textarea name="message" id="message" required class="form-control"></textarea>
+                </div>
+                <button type="submit" class="btn btn-sm btn-outline-primary">Dergo <i class="bi bi-send"></i></button>
+            </form>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="./assets/js/helpers.js"></script>
+    <script type="module">
+        import Header  from "./components/Header.js"
+
+        document.querySelector('header').innerHTML = Header()
+
+        const form = document.querySelector('form')
+        const email = document.querySelector('#email')
+        const email_validation_msg = document.querySelector('small')
+
+        email.addEventListener('keyup', e => {
+            if(isValid(e.target.value)) {
+                email_validation_msg.innerHTML = 'Email adresa esht valide!'
+                email_validation_msg.style.color = 'green'
+            } else {
+                email_validation_msg.innerHTML = 'Email adresa nuk esht valide!'
+                email_validation_msg.style.color = 'red'
+            }
+        })
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            alert('Email u dergua me sukses.')
+            e.target.reset()
+        })
+    </script>
+</body>
+</html>

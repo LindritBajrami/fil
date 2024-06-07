@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmat - FilmaDB</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+</head>
+<body>
+    
+    <header></header>
+
+    <section>
+        <div class="container">
+            <div class="mb-5 d-flex justify-content-between align-items-center">
+                <h1>Filmat</h1>
+                <div>
+                    <span>Faqja:</span>
+                    <input type="number" id="current-page" value="1" min="1" style="width: 60px; text-align: center;" />
+                </div>
+            </div>
+            <div class="movies"></div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="./assets/js/helpers.js"></script>
+    <script type="module">
+        import Header  from "./components/Header.js"
+
+        document.querySelector('header').innerHTML = Header()
+
+        const query_string = getQueryStringFromURL(window.location.href)
+        const params = new URLSearchParams(query_string);
+
+        if(params.has('q')) {
+            const search = params.get('q')
+            
+            const api_url = `https://api.themoviedb.org/3/search/movie?api_key=8434b8e45fae7a011d0aba790f56cad3&query=${search}`
+
+            fetch(api_url)
+            .then(response => response.json())
+            .then(data => {
+              const movies = data.results
+              let movies_html = `<div class="row">`
+
+              movies.forEach(m => {
+                  let no_image = 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/800px-Image_not_available.png'
+                  let poster = m.backdrop_path === null ? no_image : `https://image.tmdb.org/t/p/w185/${m.backdrop_path}`
+
+                  movies_html += `
+                  <div class="col-3">
+                      <div class="card mb-4" style="height: 366px">
+                          <img src="${poster}" class="card-img-top" alt="...">
+                          <div class="card-body">
+                              <h5 class="card-title">${m.title}</h5>
+                              <p class="card-text">
+                                  <i class="bi bi-calendar-check"></i> ${m.release_date}
+                                  <br />
+                                  <i class="bi bi-star"></i> ${m.vote_average}
+                              </p>
+                              <a href="movie-details.html?id=${m.id}" class="btn btn-sm btn-outline-primary"><i class="bi bi-arrow-right"></i></a>
+                          </div>
+                      </div>
+                  </div>
+                  `
+              })
+
+              movies_html += `</div>`
+
+              document.querySelector('.movies').innerHTML = movies_html
+            })
+        } else {
+          const current_page = document.querySelector('#current-page')
+
+          // on load
+          displayMovies(1, document.querySelector('.movies'))
+
+          // page number change
+          current_page.addEventListener('change', e => {
+              displayMovies(e.target.value, document.querySelector('.movies'))
+          })
+        }
+    </script>
+</body>
+</html>
