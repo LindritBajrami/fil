@@ -11,7 +11,7 @@ export default function Header() {
               <li class="nav-item">
                 <a class="nav-link" href="index.html">Ballina</a>
               </li>
-              <li class="nav-item active" aria-current="page">
+              <li class="nav-item " aria-current="page">
                 <a class="nav-link" href="movies.html">Filmat</a>
               </li>
               <li class="nav-item">
