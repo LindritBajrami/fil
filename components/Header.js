@@ -9,19 +9,19 @@ export default function Header() {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Ballina</a>
+                <a class="nav-link" href="index.html">Home</a>
               </li>
               <li class="nav-item " aria-current="page">
-                <a class="nav-link" href="movies.html">Filmat</a>
+                <a class="nav-link" href="movies.html">Movies</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="favourites.html">Filmat e preferuar</a>
+                <a class="nav-link" href="favourites.html">Favourite Movies</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contact.html">Kontakti</a>
+                <a class="nav-link" href="contact.html">Contacts</a>
               </li>
             </ul>
-            <input class="form-control ms-4 w-25" onchange="window.location.href = 'http://127.0.0.1:5500/movies.html?q='+event.target.value" type="search" placeholder="Kerko permes titullit" aria-label="Search">
+            <input class="form-control ms-4 w-25" onchange="window.location.href = 'movies.html?q='+event.target.value" type="search" placeholder="Search by title" aria-label="Search">
           </div>
         </div>
     </nav>
