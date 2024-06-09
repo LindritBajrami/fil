@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filmat e preferuar - FilmaDB</title>
+    <title>Favourite Movies - Movies Shop</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
@@ -47,13 +47,13 @@
         document.querySelector('.favmovies').innerHTML = movies_html
 
         addDynamicEventListener(document.body, 'click', '#delete-movie', function (e) {
-            const answer = confirm('A jeni i sigurte?')
+            const answer = confirm('Are you sure?')
 
             if(answer) {
                 let id = e.target.getAttribute('movie-id') 
                 if(id == null) id = e.target.parentElement.getAttribute('movie-id') 
                 localStorage.setItem('favmovies', JSON.stringify([...movies.filter(m => m.id != id)]))
-                window.location.href = 'http://127.0.0.1:5500/favourites.html'
+                window.location.href = 'favourites.html'
             }
         })
     </script>
