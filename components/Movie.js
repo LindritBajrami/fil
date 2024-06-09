@@ -24,8 +24,8 @@ export default function Movie(id, div) {
                     <br />
                     Votes: ${data.vote_count}
                 </p>
-                <button id="add-to-fav" movie-id="${data.id}" class="btn btn-sm btn-outline-danger"><i class="bi bi-heart"></i> Shtoje tek filmat e preferuar</button>
-                <a href="/movies.html" class="btn btn-sm btn-outline-secondary ms-2"><i class="bi bi-arrow-left"></i> Kthehu tek "Filmat"</a>
+                <button id="add-to-fav" movie-id="${data.id}" class="btn btn-sm btn-outline-danger"><i class="bi bi-heart"></i> Add to favourite movies</button>
+                <a href="movies.html" class="btn btn-sm btn-outline-secondary ms-2"><i class="bi bi-arrow-left"></i> Return to Movies</a>
             </div>
         </div>
         `
