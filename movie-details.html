@@ -50,14 +50,14 @@
           .then(data => {
             const fav_movies = getFavMovies()
             if(fav_movies.filter(movie => movie.id == data.id).length > 0) {
-              alert('The movie is already added to Favourite Movies!')
+              alert('The movie is already added to Favorite Movies!')
             } else {
               if(fav_movies.length > 0) {
                 localStorage.setItem('favmovies', JSON.stringify([...fav_movies, data]))
               } else {
                 localStorage.setItem('favmovies', JSON.stringify([data]))
               }
-              alert('The movie is added to Favourite Movies.')
+              alert('The movie is added to Favorite Movies.')
             }
           })
         })
