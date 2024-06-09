@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detajet e filmit - FilmaDB</title>
+    <title>Movie Details - Movies Shop</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
@@ -37,7 +37,7 @@
             const id = params.get('id')
             Movie(id, movie_div)
         } else {
-            window.location.href = 'http://127.0.0.1:5500/'
+            window.location.href = '/'
         }
 
 
@@ -50,14 +50,14 @@
           .then(data => {
             const fav_movies = getFavMovies()
             if(fav_movies.filter(movie => movie.id == data.id).length > 0) {
-              alert('Filmi vec me eshte shtuar ne "Filmat e preferuar"!')
+              alert('The movie is already added to Favourite Movies!')
             } else {
               if(fav_movies.length > 0) {
                 localStorage.setItem('favmovies', JSON.stringify([...fav_movies, data]))
               } else {
                 localStorage.setItem('favmovies', JSON.stringify([data]))
               }
-              alert('Filmi u shtua ne listen e "Filmat e preferuar".')
+              alert('The movie is added to Favourite Movies.')
             }
           })
         })
