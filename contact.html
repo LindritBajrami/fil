@@ -18,12 +18,12 @@
             <form action="#">
                 <div class="form-group mb-3">
                     <label for="email">Email</label>
-                    <input type="email" name="email" id="email" required class="form-control" placeholder="p.sh: john@smith.com">
+                    <input type="email" name="email" id="email" required class="form-control" placeholder="ex.: john@smith.com">
                     <small></small>
                 </div>
                 <div class="form-group mb-3">
                     <label for="title">Title</label>
-                    <input type="text" name="title" id="title" required class="form-control" placeholder="p.sh: Si mund te porosis filma?">
+                    <input type="text" name="title" id="title" required class="form-control" placeholder="ex.: How can I order a movie?">
                 </div>
                 <div class="form-group mb-3">
                     <label for="message">Message</label>
@@ -47,17 +47,17 @@
 
         email.addEventListener('keyup', e => {
             if(isValid(e.target.value)) {
-                email_validation_msg.innerHTML = 'Email adresa esht valide!'
+                email_validation_msg.innerHTML = 'The email adress is valid!'
                 email_validation_msg.style.color = 'green'
             } else {
-                email_validation_msg.innerHTML = 'Email adresa nuk esht valide!'
+                email_validation_msg.innerHTML = 'The email adress is not valid!'
                 email_validation_msg.style.color = 'red'
             }
         })
 
         form.addEventListener('submit', e => {
             e.preventDefault()
-            alert('Email u dergua me sukses.')
+            alert('The email was sent successfully.')
             e.target.reset()
         })
     </script>
