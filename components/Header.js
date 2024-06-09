@@ -15,7 +15,7 @@ export default function Header() {
                 <a class="nav-link" href="movies.html">Movies</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="favourites.html">Favourite Movies</a>
+                <a class="nav-link" href="favourites.html">Favourite</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="contact.html">Contacts</a>
